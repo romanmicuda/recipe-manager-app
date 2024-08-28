@@ -1,9 +1,19 @@
-import Image from "next/image";
+// src/app/page.tsx
 
-export default function Home() {
+import React from "react";
+import { RecipeSearch } from "./components/RecipeSearch";
+
+const HomePage = () => {
   return (
-    <main>
-      <h1>Recipe finder manager</h1>
+    <main className="container">
+      <h1>Recipe Finder and Manager</h1>
+      <p>
+        Search for recipes, save your favorites, and create shopping lists based
+        on your chosen recipes!
+      </p>
+      <RecipeSearch />
     </main>
   );
-}
+};
+
+export default HomePage;
