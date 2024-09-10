@@ -35,7 +35,7 @@ export const RecipeSearch: React.FC = () => {
           type="text"
           value={ingredients}
           onChange={(e) => setIngredients(e.target.value)}
-          placeholder="Enter ingredients (comma separated)"
+          placeholder="Enter ingredients"
         />
         <button onClick={handleSearch} disabled={loading}>
           {loading ? "Searching..." : "Search"}
