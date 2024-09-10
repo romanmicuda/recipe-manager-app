@@ -1,5 +1,3 @@
-// src/app/page.tsx
-
 import React from "react";
 import { RecipeSearch } from "./components/RecipeSearch";
 

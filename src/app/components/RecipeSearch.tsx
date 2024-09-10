@@ -16,9 +16,13 @@ export const RecipeSearch: React.FC = () => {
     setError(null);
     try {
       const result = await searchRecipe(ingredients);
-      setRecipes(result);
+      if (result) {
+        setRecipes(result);
+      } else {
+        setError("No recipes found");
+      }
     } catch (error) {
-      setError("Failed fetch recipes");
+      setError("Failed to fetch recipes");
     } finally {
       setLoading(false);
     }
@@ -31,16 +35,21 @@ export const RecipeSearch: React.FC = () => {
           type="text"
           value={ingredients}
           onChange={(e) => setIngredients(e.target.value)}
+          placeholder="Enter ingredients (comma separated)"
         />
-        <button onClick={handleSearch}>
-          {loading ? "Searching" : "Search"}
+        <button onClick={handleSearch} disabled={loading}>
+          {loading ? "Searching..." : "Search"}
         </button>
       </div>
-      {error && <p>error</p>}
+      {error && <p style={{ color: "red" }}>{error}</p>}
       <div>
-        {recipes.map((recipe) => (
-          <RecipeCard recipe={recipe} />
-        ))}
+        {loading ? (
+          <p>Loading recipes...</p>
+        ) : (
+          recipes.map((recipe) => (
+            <RecipeCard key={recipe.id} recipe={recipe} />
+          ))
+        )}
       </div>
     </>
   );
