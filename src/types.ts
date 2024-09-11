@@ -18,3 +18,14 @@ export interface RecipeDetailProps {
     extendedIngredients: Array<{ name: string; amount: number; unit: string }>;
   };
 }
+
+export interface RecipeCardListProps {
+  recipes: Recipe[];
+}
+
+export interface RecipeSearchBarProps {
+  ingredients: string[];
+  addIngredient: (ingredient: string) => void;
+  loading: boolean;
+  deleteIngredient: (ingredient: string) => void;
+}
