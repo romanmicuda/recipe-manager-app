@@ -1,6 +1,6 @@
 import { addIngredientsToShoppingList } from "@/redux/recipeSlice";
 import { Ingredient } from "@/types";
-import React, { useState } from "react";
+import React, { ReactHTML, useState } from "react";
 import { useDispatch } from "react-redux";
 import { fetchRecipe } from "../features/recipes/api";
 
@@ -25,11 +25,19 @@ export const AddIngredientShoppingList: React.FC<
     );
 
     dispatch(addIngredientsToShoppingList(modifiedIngredients));
-    console.log(recipe.extendedIngredients);
+    setAmount(1);
+  };
+
+  const handleChangeAmount = (amount: string) => {
+    setAmount(Number(amount));
   };
   return (
     <div>
-      <input type="number" value={amount} />
+      <input
+        type="number"
+        value={amount}
+        onChange={(e) => handleChangeAmount(e.target.value)}
+      />
       <button onClick={() => handleAddIngredients(amount)}>
         Add To ShoppingList
       </button>
