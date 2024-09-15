@@ -1,27 +1,41 @@
+import {
+  removeIngredientFromShoppingList,
+  togglePurchasedIngredient,
+} from "@/redux/recipeSlice";
 import { Ingredient } from "@/types";
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 export interface ShoppingListProps {
   shoppingList: Ingredient[];
 }
 
-export const ShoppingList: React.FC<ShoppingListProps> = ({ shoppingList }) => {
-  const [finalShoppingList, setfinalShoppingList] = useState(shoppingList);
+export const ShoppingList: React.FC = () => {
+  const dispatch = useDispatch();
+
+  const shoppingList = useSelector(
+    (state: { recipes: { shoppingList: Ingredient[] } }) =>
+      state.recipes.shoppingList
+  );
+
+  const aggregatedShoppingList = shoppingList.reduce((acc, ingredient) => {
+    const key = `${ingredient.name}-${ingredient.unit}`;
+    if (!acc[key]) {
+      acc[key] = { ...ingredient };
+    } else {
+      acc[key].amount += ingredient.amount;
+    }
+    return acc;
+  }, {} as { [key: string]: Ingredient });
+
+  const finalShoppingList = Object.values(aggregatedShoppingList);
 
   const handleDeleteIngredients = (ingredientName: string) => {
-    setfinalShoppingList((prevShoppingList) => [
-      ...prevShoppingList.filter((item) => item.name !== ingredientName),
-    ]);
+    dispatch(removeIngredientFromShoppingList(ingredientName));
   };
 
-  const hangleTogglePurchased = (index: number) => {
-    setfinalShoppingList((prevShoppingList) => [
-      ...prevShoppingList
-        .map((item, i) =>
-          i === index ? { ...item, purchased: !item.purchased } : item
-        )
-        .sort((a, b) => Number(a.purchased) - Number(b.purchased)),
-    ]);
+  const handleTogglePurchased = (index: number) => {
+    dispatch(togglePurchasedIngredient(index));
   };
 
   return (
@@ -31,7 +45,7 @@ export const ShoppingList: React.FC<ShoppingListProps> = ({ shoppingList }) => {
         <div>
           <div key={index}>
             <p
-              onClick={() => hangleTogglePurchased(index)}
+              onClick={() => handleTogglePurchased(index)}
               style={{
                 cursor: "pointer",
                 textDecoration: ingredient.purchased ? "line-through" : "none",

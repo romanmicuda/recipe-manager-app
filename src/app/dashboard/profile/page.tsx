@@ -13,19 +13,6 @@ export const Profile: React.FC<ProfileProps> = () => {
   const favoriteRecipes = useSelector(
     (state: { recipes: { recipes: Recipe[] } }) => state.recipes.recipes
   );
-  const shoppingList = useSelector(
-    (state: { recipes: { shoppingList: Ingredient[] } }) =>
-      state.recipes.shoppingList
-  );
-  const aggregatedShoppingList = [...shoppingList].reduce((acc, ingredient) => {
-    const key = `${ingredient.name}-${ingredient.unit}`;
-    if (!acc[key]) {
-      acc[key] = { ...ingredient };
-    } else {
-      acc[key].amount += ingredient.amount;
-    }
-    return acc;
-  }, {} as { [key: string]: Ingredient });
 
   return (
     <div>
@@ -46,7 +33,7 @@ export const Profile: React.FC<ProfileProps> = () => {
       </section>
       <FavoriteRecipes favoriteRecipes={favoriteRecipes} />
       <CustomRecipes />
-      <ShoppingList shoppingList={Object.values(aggregatedShoppingList)} />
+      <ShoppingList />
     </div>
   );
 };

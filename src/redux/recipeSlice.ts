@@ -35,12 +35,22 @@ const recipeSlice = createSlice({
     },
     addIngredientsToShoppingList(state, action: PayloadAction<Ingredient[]>) {
       const ingredients = action.payload;
-      state.shoppingList = [...state.shoppingList, ...(ingredients || [])];
+      state.shoppingList = [
+        ...state.shoppingList,
+        ...ingredients.map((item) => ({ ...item, purchased: false })),
+      ];
     },
     removeIngredientFromShoppingList(state, action: PayloadAction<string>) {
       state.shoppingList = state.shoppingList.filter(
         (ingredient) => ingredient.name !== action.payload
       );
+    },
+    togglePurchasedIngredient(state, action: PayloadAction<number>) {
+      state.shoppingList = state.shoppingList
+        .map((item, i) =>
+          i === action.payload ? { ...item, purchased: !item.purchased } : item
+        )
+        .sort((a, b) => Number(a.purchased) - Number(b.purchased));
     },
   },
 });
@@ -52,6 +62,7 @@ export const {
   deleteCustomRecipe,
   addIngredientsToShoppingList,
   removeIngredientFromShoppingList,
+  togglePurchasedIngredient,
 } = recipeSlice.actions;
 
 export default recipeSlice.reducer;
