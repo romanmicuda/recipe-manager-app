@@ -1,26 +1,12 @@
 import { Ingredient } from "@/types";
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 
-function ShoppingList() {
-  const shoppingList = useSelector(
-    (state: { recipes: { shoppingList: Ingredient[] } }) =>
-      state.recipes.shoppingList
-  );
+export interface ShoppingListProps {
+  shoppingList: Ingredient[];
+}
 
-  const aggregatedShoppingList = shoppingList.reduce((acc, ingredient) => {
-    const key = `${ingredient.name}-${ingredient.unit}`;
-    if (!acc[key]) {
-      acc[key] = { ...ingredient };
-    } else {
-      acc[key].amount += ingredient.amount;
-    }
-    return acc;
-  }, {} as { [key: string]: Ingredient });
-
-  const [finalShoppingList, setfinalShoppingList] = useState(
-    Object.values(aggregatedShoppingList)
-  );
+export const ShoppingList: React.FC<ShoppingListProps> = ({ shoppingList }) => {
+  const [finalShoppingList, setfinalShoppingList] = useState(shoppingList);
 
   const handleDeleteIngredients = (ingredientName: string) => {
     setfinalShoppingList((prevShoppingList) => [
@@ -30,9 +16,11 @@ function ShoppingList() {
 
   const hangleTogglePurchased = (index: number) => {
     setfinalShoppingList((prevShoppingList) => [
-      ...prevShoppingList.map((item, i) =>
-        i === index ? { ...item, purchased: !item.purchased } : item
-      ),
+      ...prevShoppingList
+        .map((item, i) =>
+          i === index ? { ...item, purchased: !item.purchased } : item
+        )
+        .sort((a, b) => Number(a.purchased) - Number(b.purchased)),
     ]);
   };
 
@@ -61,6 +49,6 @@ function ShoppingList() {
       ))}
     </div>
   );
-}
+};
 
 export default ShoppingList;
