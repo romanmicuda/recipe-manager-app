@@ -4,9 +4,14 @@ export interface Recipe {
   image: string;
   usedIngredientCount: number;
   missedIngredientCount: number;
+  isFavorite?: boolean;
 }
 
 export interface RecipeCardProps {
+  recipe: Recipe;
+}
+
+export interface AddRecipeFavoriteProps {
   recipe: Recipe;
 }
 

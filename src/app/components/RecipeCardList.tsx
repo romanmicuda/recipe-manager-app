@@ -9,7 +9,7 @@ const RecipeCardList: React.FC<RecipeCardListProps> = ({ recipes }) => {
       {recipes.map((recipe, index) => (
         <div key={index}>
           <RecipeCard key={recipe.id} recipe={recipe} />
-          <AddRecipeFavorite />
+          <AddRecipeFavorite recipe={recipe} />
         </div>
       ))}
     </div>
