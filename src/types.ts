@@ -28,6 +28,7 @@ export interface Ingredient {
   name: string;
   amount: number;
   unit: string;
+  purchased?: boolean;
 }
 
 export interface RecipeDetailProps {

@@ -12,7 +12,6 @@ const AddDeleteRecipeFavorite: React.FC<AddRecipeFavoriteProps> = ({
   );
 
   const handleFavorite = () => {
-    console.log(recipe.image);
     if (recipe.isFavorite) {
       dispatch(deleteRecipe(recipe));
     } else {

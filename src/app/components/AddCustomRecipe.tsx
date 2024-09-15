@@ -66,7 +66,6 @@ function AddCustomRecipe() {
 
     dispatch(addCustomRecipe(recipe));
 
-    console.log(recipe);
     setTitle("");
     setImage(null);
     setInstructions("");
