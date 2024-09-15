@@ -2,8 +2,8 @@ export interface Recipe {
   id: number;
   title: string;
   image: string;
-  usedIngredientCount: number;
-  missedIngredientCount: number;
+  usedIngredientCount?: number;
+  missedIngredientCount?: number;
   isFavorite?: boolean;
 }
 
@@ -15,13 +15,16 @@ export interface AddRecipeFavoriteProps {
   recipe: Recipe;
 }
 
+export interface RecipeDetail {
+  id: number;
+  title: string;
+  image: string | null;
+  instructions: string;
+  extendedIngredients: Array<{ name: string; amount: number; unit: string }>;
+}
+
 export interface RecipeDetailProps {
-  recipe: {
-    title: string;
-    image: string;
-    instructions: string;
-    extendedIngredients: Array<{ name: string; amount: number; unit: string }>;
-  };
+  recipe: RecipeDetail;
 }
 
 export interface ProfileProps {}

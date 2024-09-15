@@ -31,6 +31,7 @@ export const Profile: React.FC<ProfileProps> = () => {
         </p>
       </section>
       <FavoriteRecipes favoriteRecipes={favoriteRecipes} />
+      <CustomRecipes />
     </div>
   );
 };
