@@ -5,6 +5,8 @@ import { deleteRecipe } from "@/redux/recipeSlice";
 import { ProfileProps, Recipe } from "@/types";
 import React from "react";
 import RecipeCardList from "@/app/components/RecipeCardList";
+import FavoriteRecipes from "@/app/components/FavoriteRecipes";
+import CustomRecipes from "@/app/components/CustomRecipes";
 
 export const Profile: React.FC<ProfileProps> = () => {
   const favoriteRecipes = useSelector(
@@ -28,8 +30,7 @@ export const Profile: React.FC<ProfileProps> = () => {
           revisit and enjoy anytime.
         </p>
       </section>
-
-      <RecipeCardList recipes={favoriteRecipes} />
+      <FavoriteRecipes favoriteRecipes={favoriteRecipes} />
     </div>
   );
 };
