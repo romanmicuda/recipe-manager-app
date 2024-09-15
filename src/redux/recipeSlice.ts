@@ -1,14 +1,16 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Recipe, RecipeDetail } from "../types";
+import { Ingredient, Recipe, RecipeDetail } from "../types";
 
 interface RecipeState {
   recipes: Recipe[];
   customRecipeDetails: RecipeDetail[];
+  shoppingList: Ingredient[];
 }
 
 const initialState: RecipeState = {
   recipes: [],
   customRecipeDetails: [],
+  shoppingList: [],
 };
 
 const recipeSlice = createSlice({
@@ -31,10 +33,25 @@ const recipeSlice = createSlice({
         (recipe) => recipe.id !== action.payload.id
       );
     },
+    addIngredientsToShoppingList(state, action: PayloadAction<Ingredient[]>) {
+      const ingredients = action.payload;
+      state.shoppingList = [...state.shoppingList, ...(ingredients || [])];
+    },
+    removeIngredientFromShoppingList(state, action: PayloadAction<string>) {
+      state.shoppingList = state.shoppingList.filter(
+        (ingredient) => ingredient.name !== action.payload
+      );
+    },
   },
 });
 
-export const { addRecipe, addCustomRecipe, deleteRecipe, deleteCustomRecipe } =
-  recipeSlice.actions;
+export const {
+  addRecipe,
+  addCustomRecipe,
+  deleteRecipe,
+  deleteCustomRecipe,
+  addIngredientsToShoppingList,
+  removeIngredientFromShoppingList,
+} = recipeSlice.actions;
 
 export default recipeSlice.reducer;

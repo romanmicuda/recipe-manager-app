@@ -1,6 +1,6 @@
 import React from "react";
 import RecipeCardList from "./RecipeCardList";
-import { Recipe, RecipeDetail } from "@/types";
+import { RecipeDetail } from "@/types";
 import AddCustomRecipe from "./AddCustomRecipe";
 import { useSelector } from "react-redux";
 

@@ -7,6 +7,7 @@ import React from "react";
 import RecipeCardList from "@/app/components/RecipeCardList";
 import FavoriteRecipes from "@/app/components/FavoriteRecipes";
 import CustomRecipes from "@/app/components/CustomRecipes";
+import ShoppingList from "@/app/components/ShoppingList";
 
 export const Profile: React.FC<ProfileProps> = () => {
   const favoriteRecipes = useSelector(
@@ -32,6 +33,7 @@ export const Profile: React.FC<ProfileProps> = () => {
       </section>
       <FavoriteRecipes favoriteRecipes={favoriteRecipes} />
       <CustomRecipes />
+      <ShoppingList />
     </div>
   );
 };

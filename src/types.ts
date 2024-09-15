@@ -20,7 +20,14 @@ export interface RecipeDetail {
   title: string;
   image: string | null;
   instructions: string;
-  extendedIngredients: Array<{ name: string; amount: number; unit: string }>;
+  extendedIngredients: Ingredient[];
+  isFavorite?: boolean;
+}
+
+export interface Ingredient {
+  name: string;
+  amount: number;
+  unit: string;
 }
 
 export interface RecipeDetailProps {
