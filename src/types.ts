@@ -24,6 +24,8 @@ export interface RecipeDetailProps {
   };
 }
 
+export interface ProfileProps {}
+
 export interface RecipeCardListProps {
   recipes: Recipe[];
 }

@@ -5,6 +5,7 @@ import { searchRecipe } from "../features/recipes/api";
 import { Recipe } from "@/types";
 import RecipeCardList from "./RecipeCardList";
 import RecipeSearchBar from "./RecipeSearchBar";
+import { useDispatch, useSelector } from "react-redux";
 
 export const RecipeSearch: React.FC = () => {
   const [ingredients, setIngredients] = useState<string[]>([]);
@@ -23,6 +24,9 @@ export const RecipeSearch: React.FC = () => {
         const result = await searchRecipe(ingredients.join(", "));
         if (result) {
           setRecipes(result);
+          setRecipes((prevRecipes) => [
+            ...prevRecipes.map((recipe) => ({ ...recipe, isFavorite: false })),
+          ]);
         } else {
           setError("No recipes found");
         }

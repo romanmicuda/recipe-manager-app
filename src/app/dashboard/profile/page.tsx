@@ -1,8 +1,16 @@
-// src/app/profile/page.tsx
+"use client";
 
+import { useDispatch, useSelector } from "react-redux";
+import { deleteRecipe } from "@/redux/recipeSlice";
+import { ProfileProps, Recipe } from "@/types";
 import React from "react";
+import RecipeCardList from "@/app/components/RecipeCardList";
 
-function Profile() {
+export const Profile: React.FC<ProfileProps> = () => {
+  const favoriteRecipes = useSelector(
+    (state: { recipes: { recipes: Recipe[] } }) => state.recipes.recipes
+  );
+
   return (
     <div>
       <h1>Your Profile</h1>
@@ -21,24 +29,9 @@ function Profile() {
         </p>
       </section>
 
-      <section>
-        <h2>✍️ Update Your Details</h2>
-        <p>
-          Keep your profile up to date. Change your username, email, or any
-          other personal information to ensure your account reflects your
-          current details.
-        </p>
-      </section>
-
-      <section>
-        <h2>🔒 Account Settings</h2>
-        <p>
-          Manage your account settings, including password changes and other
-          security options. Your privacy and security are important to us.
-        </p>
-      </section>
+      <RecipeCardList recipes={favoriteRecipes} />
     </div>
   );
-}
+};
 
 export default Profile;
