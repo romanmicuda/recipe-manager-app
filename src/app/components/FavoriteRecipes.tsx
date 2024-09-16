@@ -9,8 +9,8 @@ const FavoriteRecipes: React.FC<FavoriteRecipesProps> = ({
   favoriteRecipes,
 }) => {
   return (
-    <div>
-      <h1>Favorite recipes</h1>
+    <div className="p-8 max-w-3xl mx-auto">
+      <h1 className="text-3xl font-bold mb-4">Favorite Recipes</h1>
       <RecipeCardList recipes={favoriteRecipes} />
     </div>
   );

@@ -73,20 +73,26 @@ function AddCustomRecipe() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>Title:</label>
+    <form onSubmit={handleSubmit} className="p-8 max-w-3xl mx-auto">
+      <div className="mb-4">
+        <label className="block mb-2">Title:</label>
         <input
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           placeholder="Enter a title"
+          className="border p-2 rounded w-full"
         />
       </div>
 
-      <div>
-        <label>Image:</label>
-        <input type="file" accept="image/*" onChange={handleImageUpload} />
+      <div className="mb-4">
+        <label className="block mb-2">Image:</label>
+        <input
+          type="file"
+          accept="image/*"
+          onChange={handleImageUpload}
+          className="mb-2"
+        />
         {image && (
           <img
             src={image}
@@ -96,19 +102,20 @@ function AddCustomRecipe() {
         )}
       </div>
 
-      <div>
-        <label>Instructions:</label>
+      <div className="mb-4">
+        <label className="block mb-2">Instructions:</label>
         <textarea
           value={instructions}
           onChange={(e) => setInstructions(e.target.value)}
           placeholder="Enter instructions"
+          className="border p-2 rounded w-full"
         />
       </div>
 
-      <div>
-        <label>Ingredients:</label>
+      <div className="mb-4">
+        <label className="block mb-2">Ingredients:</label>
         {extendedIngredients.map((ingredient, index) => (
-          <div key={index} style={{ marginBottom: "10px" }}>
+          <div key={index} className="mb-2 flex items-center">
             <input
               type="text"
               value={ingredient.name}
@@ -116,6 +123,7 @@ function AddCustomRecipe() {
                 handleIngredientChange(index, "name", e.target.value)
               }
               placeholder="Ingredient name"
+              className="border p-2 rounded w-1/3 mr-2"
             />
             <input
               type="number"
@@ -124,6 +132,7 @@ function AddCustomRecipe() {
                 handleIngredientChange(index, "amount", Number(e.target.value))
               }
               placeholder="Amount"
+              className="border p-2 rounded w-1/4 mr-2"
             />
             <input
               type="text"
@@ -132,13 +141,13 @@ function AddCustomRecipe() {
                 handleIngredientChange(index, "unit", e.target.value)
               }
               placeholder="Unit (e.g., cups, grams)"
+              className="border p-2 rounded w-1/4 mr-2"
             />
-
-            {extendedIngredients.length - 1 == index ? (
+            {extendedIngredients.length - 1 === index ? (
               <button
                 type="button"
                 onClick={() => addIngredient(index)}
-                style={{ marginLeft: "10px" }}
+                className="bg-gradient-to-r from-gradient-start to-gradient-end text-white py-2 px-4 rounded-lg shadow-button-hover hover:bg-opacity-80 transition"
               >
                 Add
               </button>
@@ -146,7 +155,7 @@ function AddCustomRecipe() {
               <button
                 type="button"
                 onClick={() => removeIngredient(index)}
-                style={{ marginLeft: "10px" }}
+                className="bg-gradient-to-r from-gradient-start to-gradient-end text-white py-2 px-4 rounded-lg shadow-button-hover hover:bg-opacity-80 transition"
               >
                 Remove
               </button>
@@ -156,7 +165,12 @@ function AddCustomRecipe() {
       </div>
 
       <div>
-        <button type="submit">Submit Recipe</button>
+        <button
+          type="submit"
+          className="bg-gradient-to-r from-gradient-start to-gradient-end text-white py-2 px-4 rounded-lg shadow-button-hover hover:bg-opacity-80 transition"
+        >
+          Submit Recipe
+        </button>
       </div>
     </form>
   );

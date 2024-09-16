@@ -51,16 +51,14 @@ export const RecipeSearch: React.FC = () => {
   }, []);
 
   return (
-    <>
-      <div>
-        <RecipeSearchBar
-          ingredients={ingredients}
-          addIngredient={addIngredient}
-          loading={loading}
-          deleteIngredient={deleteIngredient}
-        />
-      </div>
-      {error && <p style={{ color: "red" }}>{error}</p>}
+    <div className="p-8 max-w-3xl mx-auto">
+      <RecipeSearchBar
+        ingredients={ingredients}
+        addIngredient={addIngredient}
+        loading={loading}
+        deleteIngredient={deleteIngredient}
+      />
+      {error && <p className="text-red-500">{error}</p>}
       <div>
         {loading ? (
           <p>Loading recipes...</p>
@@ -68,6 +66,6 @@ export const RecipeSearch: React.FC = () => {
           <RecipeCardList recipes={recipes} />
         )}
       </div>
-    </>
+    </div>
   );
 };

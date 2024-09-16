@@ -3,57 +3,54 @@ import React from "react";
 
 function Welcome() {
   return (
-    <div>
-      <h1>Welcome to Recipe Finder and Manager</h1>
-      <p>
+    <div className="p-8 max-w-3xl mx-auto">
+      <h1 className="text-4xl font-bold mb-4">
+        Welcome to Recipe Finder and Manager
+      </h1>
+      <p className="mb-8">
         Discover your passion for cooking with our easy-to-use recipe app!
         Whether you're just starting your culinary journey or looking to try
         something new, we're here to help you explore, create, and enjoy.
       </p>
-
-      <section>
-        <h2>🔍 Find Recipes with What You Have</h2>
+      <section className="mb-8">
+        <h2 className="text-2xl font-semibold mb-2">
+          🔍 Find Recipes with What You Have
+        </h2>
         <p>
           Got a few ingredients but no idea what to cook? Enter what you have,
-          and we'll show you delicious recipes you can make right now. Cooking
-          is all about creativity—let's see what you can come up with!
+          and we'll show you delicious recipes you can make right now.
         </p>
       </section>
-
-      <section>
-        <h2>❤️ Save and Share Your Favorites</h2>
+      <section className="mb-8">
+        <h2 className="text-2xl font-semibold mb-2">
+          ❤️ Save and Share Your Favorites
+        </h2>
         <p>
           Found a recipe that blew your mind? Save it to your profile and share
-          it with friends! Cooking is more fun when you share your successes
-          (and even your fails) with others.
+          it with friends!
         </p>
       </section>
-
-      <section>
-        <h2>📝 Create Your Own Recipes</h2>
-        <p>
-          Have a recipe idea? Add it to our app and make it your own! Experiment
-          with ingredients, try new techniques, and discover your signature
-          dish. Remember, every great chef started with an idea.
-        </p>
+      <section className="mb-8">
+        <h2 className="text-2xl font-semibold mb-2">
+          📝 Create Your Own Recipes
+        </h2>
+        <p>Have a recipe idea? Add it to our app and make it your own!</p>
       </section>
-
-      <section>
-        <h2>🛒 Make Shopping Simple</h2>
+      <section className="mb-8">
+        <h2 className="text-2xl font-semibold mb-2">🛒 Make Shopping Simple</h2>
         <p>
           Planning a meal? Generate a shopping list based on your chosen recipes
-          and make your grocery trips a breeze. Focus on what matters—creating
-          amazing dishes!
+          and make your grocery trips a breeze.
         </p>
       </section>
-
-      <div>
-        <p>
-          Ready to dive into the world of cooking? Start exploring, get
-          inspired, and let's make something incredible together!
-        </p>
+      <div className="flex justify-center">
+        <Link
+          href="/dashboard"
+          className="bg-gradient-to-r from-gradient-start to-gradient-end text-white py-2 px-14 rounded-lg shadow-button-hover hover:bg-opacity-80 transition"
+        >
+          Find the recipes
+        </Link>
       </div>
-      <Link href="/dashboard">Find the recipes</Link>
     </div>
   );
 }

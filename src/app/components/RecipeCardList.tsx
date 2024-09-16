@@ -9,14 +9,12 @@ import { Recipe } from "../../types";
 
 const RecipeCardList: React.FC<RecipeCardListProps> = ({ recipes }) => {
   return (
-    <div>
-      <div>
-        {recipes.map((recipe, index) => (
-          <div key={index}>
-            <RecipeCard key={recipe.id} recipe={recipe} />
-          </div>
-        ))}
-      </div>
+    <div className="grid grid-cols-1 gap-6">
+      {recipes.map((recipe, index) => (
+        <div key={index}>
+          <RecipeCard key={recipe.id} recipe={recipe} />{" "}
+        </div>
+      ))}
     </div>
   );
 };

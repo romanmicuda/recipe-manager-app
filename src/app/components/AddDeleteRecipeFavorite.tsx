@@ -20,15 +20,18 @@ const AddDeleteRecipeFavorite: React.FC<AddRecipeFavoriteProps> = ({
   };
 
   return (
-    <div>
-      <button onClick={handleFavorite}>
-        {!favoriteRecipes.some(
-          (favrecipe) => favrecipe.id == recipe.id && favrecipe.isFavorite
+    <button
+      onClick={handleFavorite}
+      className="bg-gradient-to-r from-gradient-start to-gradient-end text-white py-2 px-4 rounded-lg shadow-button-hover hover:bg-opacity-80 transition flex items-center justify-center"
+    >
+      <span className="material-icons">
+        {favoriteRecipes.some(
+          (favrecipe) => favrecipe.id === recipe.id && favrecipe.isFavorite
         )
-          ? "Add to Favorite"
-          : "Delete to Favorite"}
-      </button>
-    </div>
+          ? "favorite"
+          : "favorite_border"}
+      </span>
+    </button>
   );
 };
 

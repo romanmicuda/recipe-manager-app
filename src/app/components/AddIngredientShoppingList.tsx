@@ -32,14 +32,20 @@ export const AddIngredientShoppingList: React.FC<
     setAmount(Number(amount));
   };
   return (
-    <div>
+    <div className="flex items-center space-x-4">
       <input
         type="number"
         value={amount}
         onChange={(e) => handleChangeAmount(e.target.value)}
+        className="border border-gray-300 p-1.5 rounded-md w-20 text-center"
+        min="1"
       />
-      <button onClick={() => handleAddIngredients(amount)}>
-        Add To ShoppingList
+
+      <button
+        onClick={() => handleAddIngredients(amount)}
+        className="bg-gradient-to-r from-gradient-start to-gradient-end text-white py-2 px-4 rounded-lg shadow-button-hover hover:bg-opacity-80 transition flex items-center justify-center"
+      >
+        <span className="material-icons">shopping_cart</span>
       </button>
     </div>
   );

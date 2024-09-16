@@ -3,7 +3,7 @@ import {
   togglePurchasedIngredient,
 } from "@/redux/recipeSlice";
 import { Ingredient } from "@/types";
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 export interface ShoppingListProps {
@@ -39,28 +39,45 @@ export const ShoppingList: React.FC = () => {
   };
 
   return (
-    <div>
-      <h1>Shopping List</h1>
-      {finalShoppingList.map((ingredient, index) => (
-        <div>
-          <div key={index}>
-            <p
-              onClick={() => handleTogglePurchased(index)}
-              style={{
-                cursor: "pointer",
-                textDecoration: ingredient.purchased ? "line-through" : "none",
-              }}
+    <div className="max-w-3xl mx-auto p-4">
+      <h1 className="text-3xl font-bold mb-4">Shopping List</h1>
+      <table className="w-full border-collapse bg-white shadow-md rounded-lg overflow-hidden">
+        <thead className="bg-gradient-to-r from-gradient-start to-gradient-end text-white">
+          <tr>
+            <th className="py-2 px-4 text-left w-1/2">Ingredient</th>
+            <th className="py-2 px-4 text-left w-1/4">Amount</th>
+            <th className="py-2 px-4 text-left w-1/4">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {finalShoppingList.map((ingredient, index) => (
+            <tr
+              key={index}
+              className={`hover:bg-gray-100 ${
+                ingredient.purchased ? "line-through" : ""
+              }`}
             >
-              {ingredient.name}
-            </p>
-            <p>{ingredient.amount}</p>
-            <p>{ingredient.unit}</p>
-          </div>
-          <button onClick={() => handleDeleteIngredients(ingredient.name)}>
-            Delete
-          </button>
-        </div>
-      ))}
+              <td
+                className="py-2 px-4 cursor-pointer"
+                onClick={() => handleTogglePurchased(index)}
+              >
+                {ingredient.name}
+              </td>
+              <td className="py-2 px-4">
+                {ingredient.amount} {ingredient.unit}
+              </td>
+              <td className="py-2 px-4">
+                <button
+                  onClick={() => handleDeleteIngredients(ingredient.name)}
+                  className="text-red-500 hover:underline"
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
